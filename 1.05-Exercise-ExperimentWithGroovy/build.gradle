@@ -81,3 +81,8 @@ task lists << {
     capitalCandies.each{ println "Capitalized candy $it." }
 
 }
+
+task classCode {
+    def foo = "bar"
+    println "$foo + foo = ${foo + "foo"}"
+}
