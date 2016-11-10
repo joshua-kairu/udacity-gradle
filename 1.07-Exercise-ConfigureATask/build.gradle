@@ -18,3 +18,19 @@ Hint: Don't forget about the solution file!
 https://docs.gradle.org/current/dsl/org.gradle.api.Task.html#org.gradle.api.Task:description
 
 */
+
+// 1. the hello task
+task hello {
+    
+    // a group to organize the tasks
+    group "Udacity"
+    
+    // 2. the description
+    description "This is a hello task"
+    
+    // 3. the task to print Hello World!
+    doLast{
+        println "Hello World!"
+    }
+    
+}
