@@ -33,38 +33,75 @@
     https://docs.gradle.org/current/userguide/more_about_tasks.html#sec:ordering_tasks
 */
 
+// 1. Configure dependencies for the "brew", "pour" and "drink" tasks
+// such that to drink my coffee I must first pour it, and pouring my
+// coffee requires me to first brew it.
+
 task brew {
     doLast {
         println "Brewing. Drip, drip, drip."
     }
 }
 
+// 1. pouring my coffee requires me to first brew it
 task pour {
+
+    dependsOn brew
+
     doLast {
         println "Pouring. Glug, glug, glug."
     }
 }
 
+//  2. Configure dependencies for the "drink" and "addSweetener" tasks
+//  such that adding sweetener requires that my coffee be poured and if
+//  I am adding sweetener, I shouldn't drink my coffee until I've done
+//  so.
+
+// 2. adding sweetener requires that my coffee be poured
 task addSweetener {
+
+    dependsOn pour
+
     doLast {
         println "Adding sweetener. Stir, stir, stir."
     }
 }
 
+// 1. to drink my coffee I must first pour it
+// 2. if I am adding sweetener, I shouldn't drink my coffee until I've done 
+// so.
 task drink {
+    
+    dependsOn pour
+    mustRunAfter addSweetener
+
     doLast {
         println "Drinking. Gulp, gulp, gulp."
     }
 }
 
+//     3. Configure dependencies for the "blackCoffee" and "sweetCoffee"
+//     tasks so that both include drinking coffee, but the "sweetCoffee"
+//     task also includes the adding of sweetener to my coffee.
+
+// 3. include drinking coffee
 task blackCoffee {
+
+    dependsOn drink
+
     doLast {
         println "Mmmm, bitter! just how I like it."
     }
 }
 
+// 3. include drinking coffee, but the "sweetCoffee" task also 
+// includes the adding of sweetener to my coffee.
 task sweetCoffee {
-    doLast {
+   
+   dependsOn = [ addSweetener, drink ]
+   
+   doLast {
         println "Mmmm, sweet! just how I like it."
     }
 }
