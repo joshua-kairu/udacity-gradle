@@ -20,8 +20,15 @@ in the webOutputDir property via the command line).
 
 */
 
+// 4. Define an extra project property in your build script whose value
+// determines the name of the zip file created by "bundleWeb" (Continue passing
+// in the webOutputDir property via the command line).
+ext{
+    zipName = "web2"
+}
+
 task bundleWeb(type: Zip) {
-    baseName = 'web'
+    baseName = zipName
     destinationDir = file(webOutputDir)
 
     from 'src/web'
