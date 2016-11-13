@@ -15,3 +15,28 @@ Exercises:
 4. Run the "hello" task and observe the output.
 
 */
+
+// 1. Define a new task class named "HelloTask"
+
+// begin class HelloTask
+class HelloTask extends DefaultTask {
+
+    // 2. Define a task action for your new task that simply prints the 
+    // string "Executing my custom task." to the console.
+    
+    @TaskAction
+    // begin task action doAction
+    void doAction(){
+    
+        println "Executing my custom task"
+    
+    } // end task action doAction
+
+} // end class HelloTask
+
+// 3. Create a new task in your build script of type HelloTask named
+// "hello".
+
+task hello( type: HelloTask )
+
+// 4. Run the "hello" task and observe the output.
