@@ -28,12 +28,27 @@ task hello(type: HelloTask)
 class HelloTask extends DefaultTask {
     @TaskAction
     void doAction() {
-        println 'Hello World'
+        
+        // 1. Add logging statements at the beginning and end of the task
+        // action for the HelloTask at the INFO level.
+        logger.info "Starting HelloTask doAction"
+        
+        // 3. Modify the `println()` call in our task action to instead be
+        // a logging statement at the LIFECYCLE level.
+        logger.lifecycle 'Hello World'
+        
+        logger.info "Ending HelloTask doAction"
+        
+        // 7. CHALLENGE! Log "Catch me if you can" at DEBUG level, then use grep (or findstr on Windows) to find that message in the logs.
+        
+        logger.debug "Catch me if you can"
+        
     }
 }
 
-/*
+// 6. Uncomment and run the "derpy" task below, then use "--stacktrace" to
+// find the error.
 task derpy << {
-    primp "Herp de derp"
+    println "Herp de derp"
 }
-*/
+
