@@ -28,3 +28,34 @@ apply plugin: 'java'
 repositories {
     mavenCentral()
 }
+
+// 1. Create a new configuration called 'deps'.
+// 2. Make the 'compile' configuration extend from the 'deps' configuration.
+configurations {
+    deps
+    compile.extendsFrom( deps )
+}
+
+// 3. Add a dependency to the latest version of Google's 'guava' library to
+//    the 'deps' configuration.
+dependencies{
+    deps "com.google.guava:guava:20.0"
+}
+
+// 5. Add a task called 'zipDeps' that creates a Zip file including all the
+//   files from the 'deps' configuration. Assign a baseName of 'dependencyArchive'
+
+task zipDeps ( type: Zip ) {
+    baseName "dependencyArchive"
+    destinationDir = file( "build" )
+    from configurations.deps
+    classifier "deps"
+}
+
+task snapshotZipTask ( type: Zip ) {
+    baseName = "Foo"
+    destinationDir = file( "build" )
+    from configurations.deps
+    version = "4.2"
+    classifier = "SNAPSHOT"
+}
