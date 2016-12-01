@@ -20,3 +20,16 @@ solution file into this one.
 */
 
 //apply from: "solution.gradle"
+
+// 1. Apply the Java plugin to your project.
+apply plugin: "java"
+
+apply plugin: "application"
+
+// tells the application plugin which class to run
+mainClassName = "com.udacity.gradle.JokeTeller"
+
+task execute(type: JavaExec){
+    main = "com.udacity.gradle.JokeTeller"
+    classpath = sourceSets.main.runtimeClasspath
+}
