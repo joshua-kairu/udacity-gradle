@@ -1,0 +1,8 @@
+<resources>
+    <string name = "app_name">JokerApp</string>
+    <string name = "action_settings">Settings</string>
+
+    <!-- String for the button to retrieve a joke [CHAR LIMIT = 20] -->
+    <string name = "retrieve_joke">Get a laugh :-D</string>
+
+</resources>

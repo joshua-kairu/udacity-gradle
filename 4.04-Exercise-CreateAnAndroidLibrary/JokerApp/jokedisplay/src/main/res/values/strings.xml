@@ -1,0 +1,8 @@
+<resources>
+
+    <string name = "app_name">JokeLibrary</string>
+
+    <!-- String for when there is no joke passed in to the Joke Activity. [CHAR LIMIT=25] -->
+    <string name = "no_joke">This is no joke. :-(</string>
+
+</resources>
